@@ -15,7 +15,7 @@ autoservice-ksp = "1.2.0"
 
 # test
 junit = "5.11.4"
-strikt = "0.34.1"
+strikt = "0.35.1"
 
 [libraries]
 eventbus = { module = "org.greenrobot:eventbus-java", version.ref = "eventbus" }
