@@ -64,7 +64,7 @@ fun CodeGenerator.write(
     val name = ClassName.bestGuess(className)
 
     FileSpec.builder(name).addType(
-        TypeSpec.classBuilder(name)
+        TypeSpec.objectBuilder(name)
             .addSuperinterface(SUBSCRIBER_INFO_INDEX)
             .addProperty(
                 PropertySpec.builder(

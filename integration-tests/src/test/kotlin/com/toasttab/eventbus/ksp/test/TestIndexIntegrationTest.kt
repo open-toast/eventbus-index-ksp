@@ -25,11 +25,9 @@ import strikt.assertions.isSameInstanceAs
 import strikt.assertions.isTrue
 
 class TestIndexIntegrationTest {
-    private val index = TestIndex()
-
     @Test
     fun `correct index generated for java subscribers`() {
-        expectThat(index.getSubscriberInfo(JavaService::class.java)).isNotNull().and {
+        expectThat(TestIndex.getSubscriberInfo(JavaService::class.java)).isNotNull().and {
             get { shouldCheckSuperclass() }.isTrue()
             get { subscriberClass }.isSameInstanceAs(JavaService::class.java)
             get { subscriberMethods.map(::SubscriberMethodDescriptor) }.containsExactly(
@@ -46,7 +44,7 @@ class TestIndexIntegrationTest {
 
     @Test
     fun `correct index generated for kotlin subscribers`() {
-        expectThat(index.getSubscriberInfo(KotlinService::class.java)).isNotNull().and {
+        expectThat(TestIndex.getSubscriberInfo(KotlinService::class.java)).isNotNull().and {
             get { shouldCheckSuperclass() }.isTrue()
             get { subscriberClass }.isSameInstanceAs(KotlinService::class.java)
             get { subscriberMethods.map(::SubscriberMethodDescriptor) }.containsExactly(
