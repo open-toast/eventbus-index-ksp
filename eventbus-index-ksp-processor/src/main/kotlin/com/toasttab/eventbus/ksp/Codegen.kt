@@ -120,5 +120,11 @@ fun CodeGenerator.write(
                     .addCode("return %N[%N]", "index", "subscriberClass")
                     .build(),
             ).build(),
-    ).build().writeTo(this, Dependencies(true, *subscribers.keys.map { it.file }.toTypedArray()))
+    ).build().writeTo(
+        this,
+        Dependencies(
+            aggregating = true,
+            sources = subscribers.keys.map { it.file }.toTypedArray()
+        )
+    )
 }
