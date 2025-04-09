@@ -36,7 +36,7 @@ private fun parseSubscribeAnnotation(annotation: KSAnnotation): MaybeSubscribeAn
     } else if (threadMode is KSClassDeclaration) {
         // KSP2
         threadMode.toClassName()
-    } else{
+    } else {
         return InvalidSubscribeAnnotation("@Subscribe.threadMode = $threadMode is not a valid enum value")
     }
 
