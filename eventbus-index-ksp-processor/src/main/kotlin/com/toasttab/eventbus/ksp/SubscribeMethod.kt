@@ -17,7 +17,6 @@ package com.toasttab.eventbus.ksp
 
 import com.google.devtools.ksp.symbol.KSFile
 import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.TypeName
 
 sealed interface MaybeSubscribeMethod
 
@@ -26,10 +25,10 @@ class InvalidSubscribeMethod(
 ) : MaybeSubscribeMethod
 
 data class SubscribeMethod(
-    val rawClassName: TypeName,
+    val rawClassName: ClassName,
     val file: KSFile,
     val method: String,
-    val eventType: TypeName,
+    val eventType: ClassName,
     var annotation: SubscribeAnnotation,
 ) : MaybeSubscribeMethod
 

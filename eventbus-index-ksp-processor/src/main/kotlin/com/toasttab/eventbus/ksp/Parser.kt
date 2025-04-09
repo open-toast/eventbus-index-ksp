@@ -17,11 +17,10 @@ package com.toasttab.eventbus.ksp
 
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSAnnotation
+import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSType
-import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ksp.toClassName
-import com.squareup.kotlinpoet.ksp.toTypeName
 
 const val SUBSCRIBE_SHORT = "Subscribe"
 const val SUBSCRIBE = "org.greenrobot.eventbus.$SUBSCRIBE_SHORT"
@@ -60,9 +59,11 @@ fun parseSubscribeMethod(method: KSAnnotated): MaybeSubscribeMethod {
         return InvalidSubscribeMethod("$method is not a method")
     }
 
-    val parent = method.parentDeclaration ?: return InvalidSubscribeMethod("$method lacks a parent declaration")
+    val parent = method.parentDeclaration
 
-    val parentName = parent.qualifiedName ?: return InvalidSubscribeMethod("$method's parent does not have a name")
+    if (parent !is KSClassDeclaration) {
+        return InvalidSubscribeMethod("$method lacks a valid parent declaration")
+    }
 
     val parentFile = parent.containingFile ?: return InvalidSubscribeMethod("$method's parent does not have a file")
 
@@ -73,11 +74,11 @@ fun parseSubscribeMethod(method: KSAnnotated): MaybeSubscribeMethod {
         return InvalidSubscribeMethod("$method's parameters must have exactly one parameter")
     }
 
-    val eventType = method.parameters[0].type.toTypeName()
+    val eventType = (method.parameters[0].type.resolve().declaration as KSClassDeclaration).toClassName()
 
     return when (val subscribeAnnotation = parseSubscribeAnnotation(annotation)) {
         is SubscribeAnnotation -> SubscribeMethod(
-            ClassName(parentName.getQualifier(), parentName.getShortName()),
+            parent.toClassName(),
             parentFile,
             method.simpleName.getShortName(),
             eventType,

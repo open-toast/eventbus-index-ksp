@@ -62,6 +62,13 @@ class TestIndexIntegrationTest {
                     true,
                     2,
                 ),
+                SubscriberMethodDescriptor(
+                    "onC",
+                    ThreadMode.ASYNC,
+                    EventC::class.java,
+                    false,
+                    0,
+                ),
             )
         }
     }

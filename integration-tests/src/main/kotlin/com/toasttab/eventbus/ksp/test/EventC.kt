@@ -15,4 +15,4 @@
 
 package com.toasttab.eventbus.ksp.test
 
-class EventB<T>
+class EventC

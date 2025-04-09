@@ -20,12 +20,16 @@ import org.greenrobot.eventbus.ThreadMode
 
 @Suppress("UNUSED_PARAMETER")
 class KotlinService {
-    @Subscribe
-    fun onA(event: EventA) {
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true, priority = 2)
+    fun onB(event: EventB<String>) {
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true, priority = 2)
-    fun onB(event: EventB) {
+    @Subscribe(threadMode = ThreadMode.ASYNC)
+    fun onC(event: EventC) {
+    }
+
+    @Subscribe
+    fun onA(event: EventA?) {
     }
 
     @Subscribe

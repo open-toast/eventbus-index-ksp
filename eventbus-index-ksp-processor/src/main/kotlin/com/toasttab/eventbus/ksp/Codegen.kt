@@ -57,9 +57,15 @@ private class SubscriberTypeKey(
 
 fun CodeGenerator.write(
     className: String,
-    methods: List<SubscribeMethod>,
+    methods: List<SubscribeMethod>
 ) {
-    val subscribers = methods.groupBy { SubscriberTypeKey(it.rawClassName, it.file) }
+    val subscribers = methods.sortedWith(
+        compareBy(
+            { it.rawClassName },
+            { it.eventType },
+            { it.method }
+        ),
+    ).groupBy { SubscriberTypeKey(it.rawClassName, it.file) }
 
     val name = ClassName.bestGuess(className)
 
