@@ -41,7 +41,7 @@ private val CLASS_STAR = Class::class.asClassName().parameterizedBy(STAR)
 
 private class SubscriberTypeKey(
     val rawClassName: TypeName,
-    val file: KSFile,
+    val file: KSFile
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

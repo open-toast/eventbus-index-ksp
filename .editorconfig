@@ -1,0 +1,3 @@
+[*.kt]
+ktlint_standard_trailing-comma-on-call-site = false
+ktlint_standard_trailing-comma-on-declaration-site = false

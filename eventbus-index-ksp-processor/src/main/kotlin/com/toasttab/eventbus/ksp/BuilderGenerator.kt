@@ -27,7 +27,7 @@ private const val OPTION_EVENT_BUS_INDEX = "eventBusIndex"
 class BuilderGenerator(
     private val codeGenerator: CodeGenerator,
     private val options: Map<String, String>,
-    private val logger: KSPLogger,
+    private val logger: KSPLogger
 ) : SymbolProcessor {
     private fun subscribeMethods(resolver: Resolver) = resolver.getSymbolsWithAnnotation(SUBSCRIBE).filterIsInstance<KSFunctionDeclaration>()
 

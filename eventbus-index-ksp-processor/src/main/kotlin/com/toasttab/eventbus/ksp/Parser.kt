@@ -82,7 +82,7 @@ fun parseSubscribeMethod(method: KSAnnotated): MaybeSubscribeMethod {
             parentFile,
             method.simpleName.getShortName(),
             eventType,
-            subscribeAnnotation,
+            subscribeAnnotation
         )
 
         is InvalidSubscribeAnnotation -> InvalidSubscribeMethod("$method's ${subscribeAnnotation.why}")

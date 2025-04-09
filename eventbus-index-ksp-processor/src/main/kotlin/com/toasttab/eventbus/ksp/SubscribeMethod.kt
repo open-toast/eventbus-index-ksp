@@ -29,7 +29,7 @@ data class SubscribeMethod(
     val file: KSFile,
     val method: String,
     val eventType: ClassName,
-    var annotation: SubscribeAnnotation,
+    var annotation: SubscribeAnnotation
 ) : MaybeSubscribeMethod
 
 fun Sequence<MaybeSubscribeMethod>.partition(): Pair<List<SubscribeMethod>, List<InvalidSubscribeMethod>> =
@@ -47,9 +47,9 @@ sealed interface MaybeSubscribeAnnotation
 data class SubscribeAnnotation(
     val threadMode: ClassName,
     val sticky: Boolean,
-    val priority: Int,
+    val priority: Int
 ) : MaybeSubscribeAnnotation
 
 class InvalidSubscribeAnnotation(
-    val why: String,
+    val why: String
 ) : MaybeSubscribeAnnotation
