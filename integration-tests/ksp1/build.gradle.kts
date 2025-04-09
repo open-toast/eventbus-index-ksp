@@ -15,7 +15,7 @@
 
 plugins {
     `kotlin-conventions`
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.ksp1)
 }
 
 ksp {
@@ -24,5 +24,6 @@ ksp {
 
 dependencies {
     ksp(project(":eventbus-index-ksp-processor"))
+    implementation(project(":integration-tests:common"))
     implementation(libs.eventbus)
 }
