@@ -1,3 +1,5 @@
+import com.google.devtools.ksp.KspExperimental
+
 /*
  * Copyright (c) 2025 Toast Inc.
  *
@@ -19,6 +21,8 @@ plugins {
 }
 
 ksp {
+    @OptIn(KspExperimental::class)
+    useKsp2 = true
     arg("eventBusIndex", "com.toasttab.eventbus.ksp.test.TestIndex")
 }
 
