@@ -10,7 +10,8 @@ kotlinPoet = "2.1.0"
 
 eventbus = "3.3.1"
 
-ksp = "2.1.20-1.0.32"
+ksp1 = "2.1.20-1.0.32"
+ksp2 = "2.1.20-2.0.0"
 autoservice-ksp = "1.2.0"
 
 # test
@@ -26,7 +27,7 @@ autoservice = { module = "com.google.auto.service:auto-service", version.ref = "
 kotlinPoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinPoet" }
 kotlinPoetKsp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlinPoet" }
 
-ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp1" }
 
 # ksp
 autoservice-ksp = { module = "dev.zacsweers.autoservice:auto-service-ksp", version.ref = "autoservice-ksp"}
@@ -42,4 +43,5 @@ junit-launcher = { module = "org.junit.platform:junit-platform-launcher"}
 strikt-core = { module = "io.strikt:strikt-core", version.ref = "strikt" }
 
 [plugins]
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
+ksp1 = { id = "com.google.devtools.ksp", version.ref = "ksp1"}
+ksp2 = { id = "com.google.devtools.ksp", version.ref = "ksp2"}

@@ -30,8 +30,14 @@ private fun parseSubscribeAnnotation(annotation: KSAnnotation): MaybeSubscribeAn
 
     val threadMode = args["threadMode"]
 
-    if (threadMode !is KSType) {
-        return InvalidSubscribeAnnotation("@Subscribe.threadMode = $threadMode is not an enum value")
+    val threadModelEnumValue = if (threadMode is KSType) {
+        // KSP1
+        threadMode.toClassName()
+    } else if (threadMode is KSClassDeclaration) {
+        // KSP2
+        threadMode.toClassName()
+    } else {
+        return InvalidSubscribeAnnotation("@Subscribe.threadMode = $threadMode is not a valid enum value")
     }
 
     val sticky = args["sticky"]
@@ -46,7 +52,7 @@ private fun parseSubscribeAnnotation(annotation: KSAnnotation): MaybeSubscribeAn
         return InvalidSubscribeAnnotation("@Subscribe.priority = $priority is not an Int value")
     }
 
-    return SubscribeAnnotation(threadMode.toClassName(), sticky, priority)
+    return SubscribeAnnotation(threadModelEnumValue, sticky, priority)
 }
 
 private fun KSAnnotated.subscriberAnnotation() = annotations.find {

@@ -24,5 +24,8 @@ apply(plugin = "net.vivin.gradle-semantic-build-versioning")
 rootProject.name = "eventbus-index-ksp"
 
 include(
-    "eventbus-index-ksp-processor", "integration-tests"
+    ":eventbus-index-ksp-processor",
+    ":integration-tests:common",
+    ":integration-tests:ksp1",
+    ":integration-tests:ksp2"
 )
