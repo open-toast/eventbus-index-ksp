@@ -3,7 +3,7 @@ kotlin = "2.1.21"
 
 nexus = "1.3.0"
 ktlint = "0.50.0"
-spotless = "7.2.1"
+spotless = "8.0.0"
 
 autoservice = "1.1.1"
 kotlinPoet = "2.2.0"
